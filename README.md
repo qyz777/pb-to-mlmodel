@@ -1,7 +1,7 @@
 # pb-to-mlmodel
 ## 把pb模型转化为CoreML的mlmodel模型
 
-最近有需求需要把tensorflow训练的模型在iOS上使用，然后我在GitHub上发现了一个叫[tf-coreml](https://github.com/tf-coreml/tf-coreml)的库，他可以把pb模型转化为mlmodel模型。这里讲一下我踩坑的心得
+最近有需求需要把tensorflow训练的模型在iOS上使用，然后我在GitHub上发现了一个叫[tf-coreml](https://github.com/tf-coreml/tf-coreml)的库,这个库不支持python3，他可以把pb模型转化为mlmodel模型。这里讲一下我踩坑的心得
 
 首先你得有个pb模型，然后用他们那个库里utils/下的一个inspect_pb.py文件
 
