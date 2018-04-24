@@ -13,6 +13,8 @@
 
 ![img](https://github.com/qyz777/pb-to-mlmodel/blob/master/images/03.png)
 
+你可以在里面找到你需要的输出信息的全名
+
 然后上代码
 
 	import tfcoreml
@@ -22,4 +24,4 @@
                  output_feature_names=['out:0'],
                  input_name_shape_dict={'x-input:0': [1, 36]})
 
-这里解释一下，第一个参数是pb模型的路径，第二个参数是生成mlmodel模型的路径，第三个是输出的名字，这个输出的名字需要在之前生成的txt文件里有，且是你需要的，第四个是可选的，像我的x-input的shape是[?, 36]，所以我这里写了
+这里解释一下，第一个参数是pb模型的路径，第二个参数是生成mlmodel模型的路径，第三个是输出的名字，这个输出的名字需要在之前生成的txt文件里有，且是你需要的，第四个是可选的，像我的x-input的shape是[?, 36]，因为shape不可以是不固定的，所以我这里写成固定的了
