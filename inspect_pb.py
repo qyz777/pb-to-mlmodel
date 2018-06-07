@@ -1,8 +1,16 @@
+# -*- coding: utf-8 -*-
+# 注意，经过本人尝试，tfcoreml这个库只支持python2，具体信息查看https://github.com/tf-coreml/tf-coreml
+#
+# 如果你的输入是图片，直接使用tfcoreml，你的CoreML model的输入只会是MultiArrays
+# 所以你需要对你的输入进行一些改动才能让CoreML model显示的输入是图片
+# 具体参考 https://github.com/tf-coreml/tf-coreml/blob/master/examples/style_transfer_example.ipynb
+
 import tensorflow as tf
 from tensorflow.core.framework import graph_pb2
-import time
 import operator
 import sys
+import pbtomlmodel
+import tool
 
 
 def inspect(model_pb, output_txt_file):
@@ -43,18 +51,9 @@ def inspect(model_pb, output_txt_file):
 
 
 if __name__ == "__main__":
-    """
-    Write a summary of the frozen TF graph to a text file.
-    Summary includes op name, type, input and output names and shapes. 
-
-    Arguments
-    ----------
-    - path to the frozen .pb graph
-    - path to the output .txt file where the summary is written
-
-    Usage
-    ----------
-    python inspect_pb.py frozen.pb text_file.txt
-
-    """
-    inspect("./model_0.pb", "./file.txt")
+    # 生成网络结构文件，可以通过这个文件查看你需要的输入和输出
+    inspect("./model_0.pb", "./network-info.txt")
+    # 转换成CoreML model
+    pbtomlmodel.convert()
+    # 规范化CoreML model的输入输出名
+    tool.rename_var()

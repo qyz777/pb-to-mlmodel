@@ -1,0 +1,161 @@
+---------------------------------------------------------------------------------------------------------------------------------------------
+0: op name = import/Input, op type = ( Placeholder ), inputs = , outputs = import/Input:0
+@input shapes:
+@output shapes:
+name = import/Input:0 : (?, 36)
+---------------------------------------------------------------------------------------------------------------------------------------------
+1: op name = import/Variable, op type = ( Const ), inputs = , outputs = import/Variable:0
+@input shapes:
+@output shapes:
+name = import/Variable:0 : (36, 18)
+---------------------------------------------------------------------------------------------------------------------------------------------
+2: op name = import/Variable/read, op type = ( Identity ), inputs = import/Variable:0, outputs = import/Variable/read:0
+@input shapes:
+name = import/Variable:0 : (36, 18)
+@output shapes:
+name = import/Variable/read:0 : (36, 18)
+---------------------------------------------------------------------------------------------------------------------------------------------
+3: op name = import/Variable_1, op type = ( Const ), inputs = , outputs = import/Variable_1:0
+@input shapes:
+@output shapes:
+name = import/Variable_1:0 : (1, 18)
+---------------------------------------------------------------------------------------------------------------------------------------------
+4: op name = import/Variable_1/read, op type = ( Identity ), inputs = import/Variable_1:0, outputs = import/Variable_1/read:0
+@input shapes:
+name = import/Variable_1:0 : (1, 18)
+@output shapes:
+name = import/Variable_1/read:0 : (1, 18)
+---------------------------------------------------------------------------------------------------------------------------------------------
+5: op name = import/MatMul, op type = ( MatMul ), inputs = import/Input:0, import/Variable/read:0, outputs = import/MatMul:0
+@input shapes:
+name = import/Input:0 : (?, 36)
+name = import/Variable/read:0 : (36, 18)
+@output shapes:
+name = import/MatMul:0 : (?, 18)
+---------------------------------------------------------------------------------------------------------------------------------------------
+6: op name = import/add_1, op type = ( Add ), inputs = import/MatMul:0, import/Variable_1/read:0, outputs = import/add_1:0
+@input shapes:
+name = import/MatMul:0 : (?, 18)
+name = import/Variable_1/read:0 : (1, 18)
+@output shapes:
+name = import/add_1:0 : (?, 18)
+---------------------------------------------------------------------------------------------------------------------------------------------
+7: op name = import/Variable_2, op type = ( Const ), inputs = , outputs = import/Variable_2:0
+@input shapes:
+@output shapes:
+name = import/Variable_2:0 : (18, 9)
+---------------------------------------------------------------------------------------------------------------------------------------------
+8: op name = import/Variable_2/read, op type = ( Identity ), inputs = import/Variable_2:0, outputs = import/Variable_2/read:0
+@input shapes:
+name = import/Variable_2:0 : (18, 9)
+@output shapes:
+name = import/Variable_2/read:0 : (18, 9)
+---------------------------------------------------------------------------------------------------------------------------------------------
+9: op name = import/Variable_3, op type = ( Const ), inputs = , outputs = import/Variable_3:0
+@input shapes:
+@output shapes:
+name = import/Variable_3:0 : (1, 9)
+---------------------------------------------------------------------------------------------------------------------------------------------
+10: op name = import/Variable_3/read, op type = ( Identity ), inputs = import/Variable_3:0, outputs = import/Variable_3/read:0
+@input shapes:
+name = import/Variable_3:0 : (1, 9)
+@output shapes:
+name = import/Variable_3/read:0 : (1, 9)
+---------------------------------------------------------------------------------------------------------------------------------------------
+11: op name = import/MatMul_1, op type = ( MatMul ), inputs = import/add_1:0, import/Variable_2/read:0, outputs = import/MatMul_1:0
+@input shapes:
+name = import/add_1:0 : (?, 18)
+name = import/Variable_2/read:0 : (18, 9)
+@output shapes:
+name = import/MatMul_1:0 : (?, 9)
+---------------------------------------------------------------------------------------------------------------------------------------------
+12: op name = import/add_3, op type = ( Add ), inputs = import/MatMul_1:0, import/Variable_3/read:0, outputs = import/add_3:0
+@input shapes:
+name = import/MatMul_1:0 : (?, 9)
+name = import/Variable_3/read:0 : (1, 9)
+@output shapes:
+name = import/add_3:0 : (?, 9)
+---------------------------------------------------------------------------------------------------------------------------------------------
+13: op name = import/Variable_4, op type = ( Const ), inputs = , outputs = import/Variable_4:0
+@input shapes:
+@output shapes:
+name = import/Variable_4:0 : (9, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+14: op name = import/Variable_4/read, op type = ( Identity ), inputs = import/Variable_4:0, outputs = import/Variable_4/read:0
+@input shapes:
+name = import/Variable_4:0 : (9, 1)
+@output shapes:
+name = import/Variable_4/read:0 : (9, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+15: op name = import/Variable_5, op type = ( Const ), inputs = , outputs = import/Variable_5:0
+@input shapes:
+@output shapes:
+name = import/Variable_5:0 : (1, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+16: op name = import/Variable_5/read, op type = ( Identity ), inputs = import/Variable_5:0, outputs = import/Variable_5/read:0
+@input shapes:
+name = import/Variable_5:0 : (1, 1)
+@output shapes:
+name = import/Variable_5/read:0 : (1, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+17: op name = import/MatMul_2, op type = ( MatMul ), inputs = import/add_3:0, import/Variable_4/read:0, outputs = import/MatMul_2:0
+@input shapes:
+name = import/add_3:0 : (?, 9)
+name = import/Variable_4/read:0 : (9, 1)
+@output shapes:
+name = import/MatMul_2:0 : (?, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+18: op name = import/add_5, op type = ( Add ), inputs = import/MatMul_2:0, import/Variable_5/read:0, outputs = import/add_5:0
+@input shapes:
+name = import/MatMul_2:0 : (?, 1)
+name = import/Variable_5/read:0 : (1, 1)
+@output shapes:
+name = import/add_5:0 : (?, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+19: op name = import/Prediction, op type = ( Relu ), inputs = import/add_5:0, outputs = import/Prediction:0
+@input shapes:
+name = import/add_5:0 : (?, 1)
+@output shapes:
+name = import/Prediction:0 : (?, 1)
+---------------------------------------------------------------------------------------------------------------------------------------------
+OPS counts:
+Relu : 1
+Placeholder : 1
+Add : 3
+MatMul : 3
+Const : 6
+Identity : 6
+Shapes not found for 8 tensors. Executing graph to determine shapes. 
+2/20: Converting op name: Variable_5/read ( type:  Identity )
+4/20: Converting op name: Variable_4/read ( type:  Identity )
+6/20: Converting op name: Variable_3/read ( type:  Identity )
+8/20: Converting op name: Variable_2/read ( type:  Identity )
+10/20: Converting op name: Variable_1/read ( type:  Identity )
+12/20: Converting op name: Variable/read ( type:  Identity )
+13/20: Converting op name: Input ( type:  Placeholder )
+Skipping name of placeholder
+14/20: Converting op name: MatMul ( type:  MatMul )
+16/20: Converting op name: MatMul_1 ( type:  MatMul )
+18/20: Converting op name: MatMul_2 ( type:  MatMul )
+20/20: Converting op name: Prediction ( type:  Relu )
+
+ Core ML model generated. Saved at location: ./model.mlmodel 
+
+Core ML input(s): 
+ [name: "Input__0"
+type {
+  multiArrayType {
+    shape: 36
+    dataType: DOUBLE
+  }
+}
+]
+Core ML output(s): 
+ [name: "Prediction__0"
+type {
+  multiArrayType {
+    shape: 1
+    dataType: DOUBLE
+  }
+}
+]
